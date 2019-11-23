@@ -1,0 +1,200 @@
+* {
+  &,
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+body,
+td,
+pre,
+input[type='text'],
+textarea,
+select {
+  font-family: $fontFamily;
+  line-height: 1.4;
+  color: var(--text-color, #{$textColor});
+}
+
+#root,
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.u-wrapper {
+  margin: 0 auto;
+  max-width: $wrapperSize;
+  text-align: justify;
+  width: 90%;
+
+  @include breakpoint($smallDesktop) {
+    max-width: 90%;
+  }
+
+  &--full {
+    max-width: 90%;
+  }
+}
+
+svg.icon {
+  width: 1em;
+  height: 1em;
+  margin: 0.195em;
+}
+
+svg symbol circle,
+svg symbol path {
+  overflow: visible;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
+
+.content {
+  ul,
+  ol {
+    position: relative;
+    padding: 0.5rem 0;
+  }
+
+  ul,
+  ol {
+    list-style-type: none;
+  }
+
+  ul li {
+    text-align: justify;
+    line-height: 1.4;
+    padding-left: 2.4rem;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    overflow: auto;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-top: 0.4rem solid transparent;
+      border-bottom: 0.4rem solid transparent;
+      border-left: 0.4rem solid $listColor;
+      position: relative;
+      left: -1.2rem;
+      top: 0;
+      margin: 0 -0.4rem 0 0;
+    }
+  }
+
+  ol {
+    counter-reset: section;
+  }
+
+  ol li {
+    text-align: justify;
+    line-height: 1.4;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 2.3rem;
+    position: relative;
+    overflow: auto;
+
+    &:before {
+      counter-increment: section;
+      content: counters(section, '.') '.';
+      color: darken($listColor, 5%);
+      position: absolute;
+      transform: translateX(-100%);
+      padding-right: 5px;
+    }
+  }
+
+  a {
+    --shadow: #fff;
+    text-decoration-skip-ink: auto;
+    color: $linkColor;
+    text-decoration: none;
+    font: inherit;
+    background-image: linear-gradient(currentColor, currentColor);
+    text-decoration: none;
+    background-repeat: no-repeat;
+    background-size: 100% 1.5px;
+    background-position: center bottom 4%;
+    background-origin: padding-box;
+    text-shadow: 3px 0 var(--shadow), 2px 0 var(--shadow), 1px 0 var(--shadow), -1px 0 var(--shadow), -2px 0 var(--shadow),
+      -3px 0 var(--shadow);
+  }
+}
+
+h1 {
+  font-size: 8.2rem;
+  font-weight: 200;
+  font-family: $fontFamilyTitle;
+  margin-top: 0;
+  margin-bottom: 0.4em;
+  line-height: 1.1;
+
+  @include breakpoint($bigTablet) {
+    font-size: 6.6rem;
+  }
+  @include breakpoint($tablet) {
+    font-size: 5.2rem;
+  }
+  @include breakpoint($bigPhone) {
+    font-size: 4rem;
+  }
+  @include breakpoint($phone) {
+    font-size: 3.6rem;
+  }
+}
+
+h2 {
+  font-size: 6.6rem;
+  font-weight: 200;
+  font-family: $fontFamilyTitle;
+  margin: 0.4em 0;
+  line-height: 1.2;
+  text-align: left;
+
+  @include breakpoint($bigTablet) {
+    font-size: 5.2rem;
+  }
+  @include breakpoint($tablet) {
+    font-size: 4.1rem;
+  }
+  @include breakpoint($bigPhone) {
+    font-size: 3.2rem;
+  }
+  @include breakpoint($phone) {
+    font-size: 2.9rem;
+  }
+}
+
+h3 {
+  font-size: 2.4rem;
+  font-weight: 400;
+  font-family: $fontFamilyTitle;
+  margin: 0.4em 0;
+  line-height: 1.2;
+  text-align: left;
+}
