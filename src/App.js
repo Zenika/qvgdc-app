@@ -1,5 +1,6 @@
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Home from 'components/Home/Home';
+import Question from 'components/Question/Question';
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
@@ -55,6 +56,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Route exact path="/" component={Home} />
+        <Route exact path="/loading" component={Question} />
       </BrowserRouter>
     </ThemeProvider>
   );

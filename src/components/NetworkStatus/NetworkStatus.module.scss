@@ -1,0 +1,16 @@
+.online {
+  background: #62ce87;
+  box-shadow: 0 2px 4px rgba(#62ce87, 0.3);
+}
+
+.offline {
+  background: red;
+  box-shadow: 0 2px 4px rgba(red, 0.3);
+}
+
+.online,
+.offline {
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+}
