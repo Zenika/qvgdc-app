@@ -8,6 +8,11 @@
   }
 }
 
+.header {
+  position: relative;
+  z-index: 2;
+}
+
 .logo {
   margin: 1.4em 1em 1.4em 0;
   width: 32px;

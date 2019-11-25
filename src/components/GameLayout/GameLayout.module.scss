@@ -1,0 +1,33 @@
+.main {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  overflow: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.question {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  flex-direction: column;
+
+  header {
+    flex: 0 0 auto;
+  }
+}
+
+.player {
+  svg {
+    stroke: var(--primary-color);
+    width: 1.4em;
+    height: 1.4em;
+    stroke-width: 1;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    margin-right: 0.4em;
+  }
+}
