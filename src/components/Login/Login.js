@@ -13,7 +13,7 @@ function Login(props) {
         <Logo />
         <h1 className={`h3 text-center ${styles.title}`}>Game master</h1>
         <form className={styles.form} noValidate autoComplete="off">
-          <TextField type="email" required label="Login" margin="normal" variant="outlined" />
+          <TextField type="email" required label="Email" margin="normal" variant="outlined" />
           <TextField type="password" required label="Mot de passe" margin="normal" variant="outlined" />
           <br />
           <br />
