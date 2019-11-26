@@ -150,55 +150,32 @@ svg symbol path {
   }
 }
 
-h1 {
-  font-size: 8.2rem;
-  font-weight: 200;
+h1,
+.h1 {
+  color: var(--primary-color);
+  font-size: 3.2rem;
+  font-weight: 300;
   font-family: $fontFamilyTitle;
-  margin-top: 0;
-  margin-bottom: 0.4em;
+  margin: var(--margin, 0.4em 0);
   line-height: 1.1;
-
-  @include breakpoint($bigTablet) {
-    font-size: 6.6rem;
-  }
-  @include breakpoint($tablet) {
-    font-size: 5.2rem;
-  }
-  @include breakpoint($bigPhone) {
-    font-size: 4rem;
-  }
-  @include breakpoint($phone) {
-    font-size: 3.6rem;
-  }
 }
 
+.h2,
 h2 {
-  font-size: 6.6rem;
-  font-weight: 200;
-  font-family: $fontFamilyTitle;
-  margin: 0.4em 0;
-  line-height: 1.2;
-  text-align: left;
-
-  @include breakpoint($bigTablet) {
-    font-size: 5.2rem;
-  }
-  @include breakpoint($tablet) {
-    font-size: 4.1rem;
-  }
-  @include breakpoint($bigPhone) {
-    font-size: 3.2rem;
-  }
-  @include breakpoint($phone) {
-    font-size: 2.9rem;
-  }
-}
-
-h3 {
+  color: var(--primary-color);
   font-size: 2.4rem;
   font-weight: 400;
   font-family: $fontFamilyTitle;
-  margin: 0.4em 0;
+  margin: var(--margin, 0.4em 0);
   line-height: 1.2;
-  text-align: left;
+}
+
+.h3,
+h3 {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  font-weight: 500;
+  font-family: $fontFamilyTitle;
+  margin: var(--margin, 0.4em 0);
+  line-height: 1.2;
 }

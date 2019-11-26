@@ -1,7 +1,6 @@
-import QvgdcTheme from 'QvgdcTheme';
+import QvgdcTheme from 'components/QvgdcTheme/QvgdcTheme';
+import Router from 'components/Router/Router';
 import React from 'react';
-
-import Router from './Router';
 
 function App() {
   return (
