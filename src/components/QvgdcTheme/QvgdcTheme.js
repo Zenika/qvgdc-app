@@ -17,6 +17,9 @@ const theme = createMuiTheme({
         '&:hover': {
           boxShadow: '0 3px 6px rgba(196, 40, 95, .3)',
         },
+        '&:disabled': {
+          background: '#ddd',
+        },
       },
     },
   },

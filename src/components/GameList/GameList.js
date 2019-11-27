@@ -13,11 +13,14 @@ const GAME_QUERY = gql`
     games(open: true) {
       id
       title
+      players {
+        id
+      }
     }
   }
 `;
 
-export default function GameList() {
+export default function GameList(props) {
   return (
     <Query query={GAME_QUERY}>
       {({ loading, error, data }) => {
@@ -35,7 +38,12 @@ export default function GameList() {
               <h2 className={styles.h2}>
                 {gamesToRender.length} partie{plural} disponible{plural} :
               </h2>
-              <RadioGroup aria-label="Deux parties disponibles" name="games">
+              <RadioGroup
+                aria-label="Deux parties disponibles"
+                name="games"
+                value={props.value || ''}
+                onChange={(event) => props.onChange(gamesToRender.find((g) => g.id === event.target.value))}
+              >
                 {gamesToRender.map((game) => (
                   <FormControlLabel key={game.id} value={game.id} control={<Radio />} label={game.title} />
                 ))}

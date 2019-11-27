@@ -1,11 +1,17 @@
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { ReactComponent as ArrowLeftIcon } from 'assets/icons/arrow-left.svg';
+import GameDetail from 'components/GameDetail/GameDetail';
 import GameList from 'components/GameList/GameList';
 import Logo from 'components/Logo/Logo';
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './Home.module.scss';
 
 function Home() {
+  const [game, setGame] = useState(null);
+  const [gameDetail, setGameDetail] = useState(false);
+
   return (
     <div className={`u-wrapper ${styles.home}`}>
       <div className={styles.left}>
@@ -18,11 +24,30 @@ function Home() {
         </h1>
       </div>
       <div className={styles.right}>
-        <GameList />
+        {gameDetail ? (
+          <div className={styles.register}>
+            <p className={styles.backToGames} onClick={() => setGameDetail(false)}>
+              <ArrowLeftIcon />
+              Retour aux parties
+            </p>
 
-        <Button variant="contained" color="primary">
-          Voir la partie
-        </Button>
+            <GameDetail game={game} />
+
+            <TextField type="text" required label="Nom de joueur" margin="normal" variant="outlined" />
+            <br />
+            <Button variant="contained" color="primary">
+              Rejoindre la partie
+            </Button>
+          </div>
+        ) : (
+          <>
+            <GameList onChange={setGame} value={game ? game.id : null} />
+
+            <Button onClick={() => setGameDetail(true)} disabled={game === null} variant="contained" color="primary">
+              Voir la partie
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );
