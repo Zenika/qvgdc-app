@@ -62,7 +62,7 @@ function Login(props) {
               />
               <br />
               <br />
-              <Button type="submit" variant="contained" color="primary" onClick={loginMutation}>
+              <Button variant="contained" color="primary" onClick={loginMutation}>
                 Se connecter
               </Button>
             </form>
