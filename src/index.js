@@ -11,7 +11,7 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000',
+  uri: 'https://app-fe420896-d2b9-4a0d-9118-382331b89a58.cleverapps.io/',
 });
 
 const client = new ApolloClient({
