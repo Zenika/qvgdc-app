@@ -19,7 +19,7 @@ const ADD_GAME = gql`
 `;
 
 const AdminAddGame = (props) => {
-  const [addGameMutation, { data }] = useMutation(ADD_GAME, {
+  const [addGameMutation] = useMutation(ADD_GAME, {
     onCompleted(_) {
       props.complete();
     },

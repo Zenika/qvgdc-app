@@ -1,10 +1,10 @@
-import { ReactComponent as UserIcon } from 'assets/icons/user.svg';
 import Footer from 'components/Footer/Footer';
 import Header from 'components/Header/Header';
 import Logo from 'components/Logo/Logo';
 import NetworkStatus from 'components/NetworkStatus/NetworkStatus';
 import Score from 'components/Score/Score';
 import React from 'react';
+import { User } from 'react-feather';
 
 import styles from './GameLayout.module.scss';
 
@@ -26,7 +26,7 @@ function GameLayout(props) {
       </div>
       <Footer>
         <p className={styles.player}>
-          <UserIcon />
+          <User />
           Papa roach
         </p>
         <Score />

@@ -1,5 +1,5 @@
-import { ReactComponent as GiftIcon } from 'assets/icons/gift.svg';
 import React from 'react';
+import { Gift } from 'react-feather';
 
 import styles from './GameDetail.module.scss';
 
@@ -7,7 +7,7 @@ const GameDetail = (props) => {
   return (
     <>
       <h2 className={`h3 ${styles.title}`} style={{ color: 'inherit' }}>
-        <GiftIcon />
+        <Gift />
         {props.game.title}
       </h2>
       <p className={styles.description}>

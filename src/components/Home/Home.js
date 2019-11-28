@@ -1,10 +1,10 @@
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { ReactComponent as ArrowLeftIcon } from 'assets/icons/arrow-left.svg';
 import GameDetail from 'components/GameDetail/GameDetail';
 import GameList from 'components/GameList/GameList';
 import Logo from 'components/Logo/Logo';
 import React, { useState } from 'react';
+import { ArrowLeft } from 'react-feather';
 
 import styles from './Home.module.scss';
 
@@ -27,7 +27,7 @@ function Home() {
         {gameDetail ? (
           <div className={styles.register}>
             <p className={styles.backToGames} onClick={() => setGameDetail(false)}>
-              <ArrowLeftIcon />
+              <ArrowLeft />
               Retour aux parties
             </p>
 
