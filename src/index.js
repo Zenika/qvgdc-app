@@ -2,6 +2,7 @@ import 'index.css';
 
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
+import { setContext } from 'apollo-link-context';
 import { createHttpLink } from 'apollo-link-http';
 import App from 'components/App/App';
 import React from 'react';
@@ -14,8 +15,18 @@ const httpLink = createHttpLink({
   uri: 'https://app-fe420896-d2b9-4a0d-9118-382331b89a58.cleverapps.io/',
 });
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('token');
+  return {
+    headers: {
+      ...headers,
+      Authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

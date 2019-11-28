@@ -3,8 +3,10 @@ import TextField from '@material-ui/core/TextField';
 import DefaultLayout from 'components/DefaultLayout/DefaultLayout';
 import Logo from 'components/Logo/Logo';
 import gql from 'graphql-tag';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Mutation } from 'react-apollo';
+import { Redirect } from 'react-router-dom';
+import authContext from 'store';
 
 import styles from './Login.module.scss';
 
@@ -23,11 +25,19 @@ const LOGIN_MUTATION = gql`
 function Login(props) {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const [state, dispatch] = useContext(authContext);
 
   const storeTokenAndUserAndRefresh = (token, user) => {
+    dispatch({
+      type: 'LOGIN',
+      payload: {
+        token,
+        user,
+      },
+    });
+
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
-    document.location.reload();
   };
 
   const handleComplete = (e) => {
@@ -37,39 +47,45 @@ function Login(props) {
   };
 
   return (
-    <Mutation mutation={LOGIN_MUTATION} variables={{ email: login, password }} onCompleted={handleComplete}>
-      {(loginMutation) => (
-        <DefaultLayout>
-          <div className={styles.card}>
-            <Logo />
-            <h1 className={`h3 text-center ${styles.title}`}>Game master</h1>
-            <form className={styles.form} noValidate autoComplete="off">
-              <TextField
-                onChange={(e) => setLogin(e.target.value)}
-                type="email"
-                required
-                label="Email"
-                margin="normal"
-                variant="outlined"
-              />
-              <TextField
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                required
-                label="Mot de passe"
-                margin="normal"
-                variant="outlined"
-              />
-              <br />
-              <br />
-              <Button variant="contained" color="primary" onClick={loginMutation}>
-                Se connecter
-              </Button>
-            </form>
-          </div>
-        </DefaultLayout>
+    <>
+      {state.isLoggedIn ? (
+        <Redirect to="/admin" />
+      ) : (
+        <Mutation mutation={LOGIN_MUTATION} variables={{ email: login, password }} onCompleted={handleComplete}>
+          {(loginMutation) => (
+            <DefaultLayout>
+              <div className={styles.card}>
+                <Logo />
+                <h1 className={`h3 text-center ${styles.title}`}>Game master</h1>
+                <form className={styles.form} noValidate autoComplete="off">
+                  <TextField
+                    onChange={(e) => setLogin(e.target.value)}
+                    type="email"
+                    required
+                    label="Email"
+                    margin="normal"
+                    variant="outlined"
+                  />
+                  <TextField
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    required
+                    label="Mot de passe"
+                    margin="normal"
+                    variant="outlined"
+                  />
+                  <br />
+                  <br />
+                  <Button variant="contained" color="primary" onClick={loginMutation}>
+                    Se connecter
+                  </Button>
+                </form>
+              </div>
+            </DefaultLayout>
+          )}
+        </Mutation>
       )}
-    </Mutation>
+    </>
   );
 }
 

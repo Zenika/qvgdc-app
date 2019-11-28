@@ -12,24 +12,3 @@
   position: relative;
   z-index: 2;
 }
-
-.logo {
-  margin: 1.4em 1em 1.4em 0;
-  width: 32px;
-  height: 32px;
-  transform: translateZ(0);
-}
-
-.title {
-  margin-right: auto;
-  h1 {
-    font-size: 18px;
-    font-weight: normal;
-    margin: 0;
-  }
-
-  p {
-    margin: 0.1em 0 0;
-    font-size: 12px;
-  }
-}

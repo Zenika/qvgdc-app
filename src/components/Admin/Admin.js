@@ -1,12 +1,13 @@
-import DefaultLayout from 'components/DefaultLayout/DefaultLayout';
 import React from 'react';
+
+import AdminLayout from './AdminLayout/AdminLayout';
+import AdminRouter from './AdminRouter';
 
 function Admin() {
   return (
-    <DefaultLayout>
-      <h1>Admin panel</h1>
-      <p>Bonjour admin</p>
-    </DefaultLayout>
+    <AdminLayout>
+      <AdminRouter />
+    </AdminLayout>
   );
 }
 
