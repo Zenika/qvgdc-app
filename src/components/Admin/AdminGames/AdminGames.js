@@ -102,7 +102,7 @@ const AdminGames = () => {
       },
     ],
     data: gamesToRender,
-    title: 'Ajouter une partie',
+    title: 'Liste des parties',
     actions: (
       <Button size="small" onClick={() => setDialogOpen(true)} variant="contained" color="primary">
         Ajouter une partie
@@ -132,6 +132,9 @@ const AdminGames = () => {
 
   return (
     <>
+      <h2>Bienvenue</h2>
+      <p>Dans l'administration de Qui veut gagner des canards. Vous pouvez ajouter des parties puis gérer leurs contenus.</p>
+      <br />
       <CrudList table={dataTable} dialog={dataDialog} />
     </>
   );
