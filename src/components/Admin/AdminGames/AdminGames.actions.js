@@ -15,6 +15,15 @@ export const USER_QUERY = gql`
   }
 `;
 
+export const ADD_GAME = gql`
+  mutation newGame($title: String!) {
+    newGame(title: $title) {
+      id
+      title
+    }
+  }
+`;
+
 export const DELETE_GAME = gql`
   mutation deleteGame($gameId: ID!) {
     deleteGame(gameId: $gameId) {

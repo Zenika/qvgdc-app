@@ -132,22 +132,22 @@ svg symbol path {
       padding-right: 5px;
     }
   }
+}
 
-  a {
-    --shadow: #fff;
-    text-decoration-skip-ink: auto;
-    color: $linkColor;
-    text-decoration: none;
-    font: inherit;
-    background-image: linear-gradient(currentColor, currentColor);
-    text-decoration: none;
-    background-repeat: no-repeat;
-    background-size: 100% 1.5px;
-    background-position: center bottom 4%;
-    background-origin: padding-box;
-    text-shadow: 3px 0 var(--shadow), 2px 0 var(--shadow), 1px 0 var(--shadow), -1px 0 var(--shadow), -2px 0 var(--shadow),
-      -3px 0 var(--shadow);
-  }
+a {
+  --shadow: #fff;
+  text-decoration-skip-ink: auto;
+  color: $linkColor;
+  text-decoration: none;
+  font: inherit;
+  background-image: linear-gradient(currentColor, currentColor);
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-size: 100% 1.5px;
+  background-position: center bottom 4%;
+  background-origin: padding-box;
+  text-shadow: 3px 0 var(--shadow), 2px 0 var(--shadow), 1px 0 var(--shadow), -1px 0 var(--shadow), -2px 0 var(--shadow),
+    -3px 0 var(--shadow);
 }
 
 h1,
