@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
 import React from 'react';
-import { ArrowLeft } from 'react-feather';
+import { ChevronRight, Home } from 'react-feather';
 import { Link, useParams } from 'react-router-dom';
 
 import AdminQuestions from '../AdminQuestions/AdminQuestions';
@@ -19,9 +19,13 @@ const AdminGameDetail = () => {
 
   return (
     <>
-      <Link to="/admin">
-        <ArrowLeft size="16" /> Retour
-      </Link>
+      <p>
+        <Link to="/admin">
+          <Home size="16" />
+        </Link>
+        <ChevronRight size="12" />
+        {data.game.title}
+      </p>
 
       <h2>{data.game.title}</h2>
       <AdminQuestions gameId={gameId} />

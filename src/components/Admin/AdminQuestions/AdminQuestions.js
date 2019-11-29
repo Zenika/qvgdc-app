@@ -63,7 +63,7 @@ const AdminQuestions = (props) => {
         align: 'right',
         content: (question) => (
           <>
-            <IconButton onClick={() => history.push(`/admin/${question.id}`)} size="small">
+            <IconButton onClick={() => history.push(`/admin/${props.gameId}/questions/${question.id}`)} size="small">
               <Edit size="16" />
             </IconButton>
             <IconButton size="small" onClick={() => deleteQuestion(questionsToRender, question.id)}>

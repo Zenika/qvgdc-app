@@ -86,6 +86,7 @@ const AdminGames = () => {
       {
         title: '',
         slug: 'actions',
+        align: 'right',
         content: (game) => (
           <>
             <IconButton onClick={() => history.push(`/admin/${game.id}`)} size="small">
