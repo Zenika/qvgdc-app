@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import React, { useState } from 'react';
-import { Edit, PlayCircle, Trash2 } from 'react-feather';
+import { Edit, Trash2 } from 'react-feather';
 import { useHistory } from 'react-router-dom';
 
 import CrudList from '../CrudList/CrudList';
@@ -68,9 +68,6 @@ const AdminQuestions = (props) => {
             </IconButton>
             <IconButton size="small" onClick={() => deleteQuestion(questionsToRender, question.id)}>
               <Trash2 size="16" />
-            </IconButton>
-            <IconButton size="small">
-              <PlayCircle size="16" />
             </IconButton>
           </>
         ),

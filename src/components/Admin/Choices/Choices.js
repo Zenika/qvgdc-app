@@ -1,18 +1,17 @@
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Radio from '@material-ui/core/Radio';
 import TextField from '@material-ui/core/TextField';
 import React, { useState } from 'react';
 import { PlayCircle, Trash2 } from 'react-feather';
-import { useHistory } from 'react-router-dom';
 
 import CrudList from '../CrudList/CrudList';
 import { ADD_CHOICE, CHOICE_QUERY, DELETE_CHOICE } from './Choices.actions';
 
 const Choices = (props) => {
   const [input, setInput] = useState('');
-
-  const history = useHistory();
+  const [goodChoiceId, setGoodChoiceId] = useState(props.goodChoiceId);
   const { loading, error, data, refetch } = useQuery(CHOICE_QUERY, {
     variables: {
       questionId: props.questionId,
@@ -39,7 +38,12 @@ const Choices = (props) => {
     setInput('');
   };
 
-  const deleteQuestion = (choices, choiceId) => {
+  const handleChangeGoodChoiceId = (event) => {
+    setGoodChoiceId(event.target.value);
+    props.updateGoodChoiceQuestion(props.questionId, event.target.value);
+  };
+
+  const deleteChoice = (choices, choiceId) => {
     data.choices.filter((g) => g.id !== choiceId);
 
     deleteChoiceMutation({
@@ -55,12 +59,26 @@ const Choices = (props) => {
     columns: [
       { title: 'Titre', slug: 'title' },
       {
+        title: 'Bonne réponse',
+        slug: 'goodchoice',
+        content: (choice) => (
+          <Radio
+            disabled={props.updatingQuestion}
+            checked={goodChoiceId === choice.id}
+            onChange={handleChangeGoodChoiceId}
+            value={choice.id}
+            name="goodChoice"
+            inputProps={{ 'aria-label': choice.title }}
+          />
+        ),
+      },
+      {
         title: '',
         slug: 'actions',
         align: 'right',
-        content: (question) => (
+        content: (choice) => (
           <>
-            <IconButton size="small" onClick={() => deleteQuestion(choicesToRender, question.id)}>
+            <IconButton size="small" onClick={() => deleteChoice(choicesToRender, choice.id)}>
               <Trash2 size="16" />
             </IconButton>
             <IconButton size="small">

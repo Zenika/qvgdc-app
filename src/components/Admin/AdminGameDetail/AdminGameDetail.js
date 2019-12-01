@@ -8,7 +8,7 @@ import { GAMEDETAIL_QUERY } from './AdminGameDetail.action';
 
 const AdminGameDetail = () => {
   let { gameId } = useParams();
-  const { loading, error, data, refetch } = useQuery(GAMEDETAIL_QUERY, {
+  const { loading, error, data } = useQuery(GAMEDETAIL_QUERY, {
     variables: {
       gameId,
     },

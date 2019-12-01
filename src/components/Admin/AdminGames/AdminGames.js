@@ -95,7 +95,7 @@ const AdminGames = () => {
             <IconButton size="small" onClick={() => deleteGame(gamesToRender, game.id)}>
               <Trash2 size="16" />
             </IconButton>
-            <IconButton size="small">
+            <IconButton onClick={() => history.push(`/admin/${game.id}/play`)} size="small">
               <PlayCircle size="16" />
             </IconButton>
           </>
