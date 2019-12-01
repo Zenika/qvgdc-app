@@ -11,7 +11,12 @@ const Counter = (props) => {
   interval = setTimeout(() => {
     const newTiming = remaining - 1000;
 
-    setRemaining(newTiming > 0 ? newTiming : 0);
+    if (newTiming > 0) {
+      setRemaining(newTiming);
+    } else {
+      setRemaining(0);
+      props.onComplete();
+    }
   }, 1000);
 
   return (

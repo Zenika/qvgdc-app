@@ -10,6 +10,7 @@ import styles from './PlayGame.module.scss';
 
 const PlayGame = () => {
   const [currentIndexQuestion, setCurrentIndexQuestion] = useState(0);
+  const [isQuestionFinished, setIsQuestionFinished] = useState(false);
   let { gameId } = useParams();
   const { loading, error, data } = useQuery(GAMEDETAIL_QUERY, {
     variables: {
@@ -38,8 +39,6 @@ const PlayGame = () => {
 
   const endingQuestion = currentQuestion.launched ? new Date(currentQuestion.launched).getTime() + currentQuestion.duration * 1000 : null;
 
-  console.log(endingQuestion);
-
   return (
     <>
       <h2>{currentGame.title}</h2>
@@ -58,7 +57,13 @@ const PlayGame = () => {
         );
       })}
       {currentQuestion.launched ? (
-        <>{endingQuestion > Date.now() ? <Counter endAt={endingQuestion} /> : <p>Question terminée!</p>}</>
+        <>
+          {endingQuestion < Date.now() || isQuestionFinished ? (
+            <p>Question terminée!</p>
+          ) : (
+            <Counter endAt={endingQuestion} onComplete={() => setIsQuestionFinished(true)} />
+          )}
+        </>
       ) : (
         <Button variant="contained" color="primary" onClick={() => launchQuestion(currentQuestion.id, currentQuestion.order)}>
           Lancer la question
