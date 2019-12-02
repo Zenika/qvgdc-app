@@ -11,7 +11,6 @@ export const GAMEDETAIL_QUERY = gql`
         title
         launched
         duration
-        order
       }
       players {
         id
@@ -22,7 +21,6 @@ export const GAMEDETAIL_QUERY = gql`
         title
         launched
         duration
-        order
         choices {
           id
           title
@@ -47,6 +45,7 @@ export const GAMEDETAIL_SUBSCRIPTION = gql`
         title
         launched
         duration
+        order
       }
       players {
         id
@@ -57,6 +56,7 @@ export const GAMEDETAIL_SUBSCRIPTION = gql`
         title
         launched
         duration
+        order
         choices {
           id
           title

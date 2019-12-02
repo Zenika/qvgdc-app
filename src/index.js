@@ -15,7 +15,7 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
 const wsLink = new WebSocketLink({
-  uri: `ws://app-fe420896-d2b9-4a0d-9118-382331b89a58.cleverapps.io/`,
+  uri: `wss://app-fe420896-d2b9-4a0d-9118-382331b89a58.cleverapps.io/`,
   options: {
     reconnect: true,
     connectionParams: {

@@ -3,7 +3,7 @@ import Header from 'components/Header/Header';
 import Logo from 'components/Logo/Logo';
 import NetworkStatus from 'components/NetworkStatus/NetworkStatus';
 import Score from 'components/Score/Score';
-import React from 'react';
+import React, { useContext } from 'react';
 import { User } from 'react-feather';
 
 import styles from './GameLayout.module.scss';
@@ -16,8 +16,8 @@ function GameLayout(props) {
           <Logo />
         </div>
         <div className={styles.title}>
-          <h1>NightClazz GraphQL</h1>
-          <p>12 joueurs connectés</p>
+          <h1>{props.game.title}</h1>
+          <p>{props.game.players.length} joueurs connectés</p>
         </div>
         <NetworkStatus online={true} />
       </Header>
@@ -27,7 +27,7 @@ function GameLayout(props) {
       <Footer>
         <p className={styles.player}>
           <User />
-          Papa roach
+          {props.player.player}
         </p>
         <Score />
       </Footer>

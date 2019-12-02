@@ -1,11 +1,13 @@
+@import '../../assets/scss/base/conf';
+
 .online {
-  background: #62ce87;
-  box-shadow: 0 2px 4px rgba(#62ce87, 0.3);
+  background: $color6;
+  box-shadow: 0 2px 4px rgba($color6, 0.3);
 }
 
 .offline {
-  background: red;
-  box-shadow: 0 2px 4px rgba(red, 0.3);
+  background: $color1;
+  box-shadow: 0 2px 4px rgba($color1, 0.3);
 }
 
 .online,

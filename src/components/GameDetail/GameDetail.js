@@ -11,7 +11,7 @@ const GameDetail = (props) => {
         {props.game.title}
       </h2>
       <p className={styles.description}>
-        {props.game.players && props.game.players.length ? `${props.game.players.length} joueurs` : 'Aucun joueur'}
+        {props.game.players && props.game.players.length ? `${props.game.players.length} joueur(s)` : 'Aucun joueur'}
       </p>
     </>
   );

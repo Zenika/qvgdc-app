@@ -1,7 +1,6 @@
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import GameDetail from 'components/GameDetail/GameDetail';
 import GameList from 'components/GameList/GameList';
+import JoinGame from 'components/JoinGame/JoinGame';
 import Logo from 'components/Logo/Logo';
 import React, { useState } from 'react';
 import { ArrowLeft } from 'react-feather';
@@ -31,13 +30,7 @@ function Home() {
               Retour aux parties
             </p>
 
-            <GameDetail game={game} />
-
-            <TextField type="text" required label="Nom de joueur" margin="normal" variant="outlined" />
-            <br />
-            <Button variant="contained" color="primary">
-              Rejoindre la partie
-            </Button>
+            <JoinGame game={game} />
           </div>
         ) : (
           <>
