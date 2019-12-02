@@ -12,7 +12,7 @@ const Counter = (props) => {
   if (interval) clearTimeout(interval);
 
   interval = setTimeout(() => {
-    const newTiming = remaining - 1000;
+    const newTiming = new Date(props.endAt).getTime() - Date.now();
 
     if (newTiming > 0) {
       setRemaining(newTiming);
@@ -26,7 +26,7 @@ const Counter = (props) => {
   const dashOffset = (progress * 157.079) / 100;
 
   return (
-    <div className={styles.counter}>
+    <div className={`${styles.counter} ${remaining === 0 ? styles.finish : null}`}>
       <svg width="70" height="70" viewBox="0 0 70 70">
         <defs>
           <filter id="f2" x="0" y="0" width="300%" height="300%">

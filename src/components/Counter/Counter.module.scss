@@ -23,6 +23,15 @@
   }
 }
 
+.finish {
+  color: $color1;
+  :global {
+    svg {
+      color: inherit;
+    }
+  }
+}
+
 .remaining {
   font-size: 1.12em;
   z-index: 3;
