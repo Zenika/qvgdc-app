@@ -16,6 +16,9 @@ const PlayGame = () => {
     variables: {
       gameId,
     },
+    onCompleted(_) {
+      setCurrentIndexQuestion(_.game.state);
+    },
   });
 
   const { loading: subscriptionLoading, data: data$ } = useSubscription(GAMEDETAIL_SUBSCRIPTION, {
@@ -30,7 +33,10 @@ const PlayGame = () => {
   if (error) return <div>Problème lors du chargement de la partie</div>;
 
   const currentGame = data$ ? data$.updatedGame : data.game;
-  const currentQuestion = currentGame.questions[currentGame.state !== null ? currentGame.state : 0];
+
+  if (currentGame.finish) return <div>Partie terminée !</div>;
+
+  const currentQuestion = currentGame.questions[currentGame.state !== null ? currentGame.state - 1 : 0];
 
   const launchQuestion = (questionId, order) => {
     setCurrentIndexQuestion(order);
@@ -39,11 +45,28 @@ const PlayGame = () => {
 
   const endingQuestion = currentQuestion.launched ? new Date(currentQuestion.launched).getTime() + currentQuestion.duration * 1000 : null;
 
+  if (isQuestionFinished === false && endingQuestion && endingQuestion < Date.now()) setIsQuestionFinished(true);
+
+  const detachQuestion = () => {
+    if (currentIndexQuestion === currentGame.questions.length) {
+      terminateGame();
+    }
+    updateGameMutation({ variables: { gameId, data: { open: true, currentQuestion: null, state: currentIndexQuestion + 1 } } });
+    setCurrentIndexQuestion(currentIndexQuestion + 1);
+    setIsQuestionFinished(false);
+  };
+
+  const terminateGame = () => {
+    updateGameMutation({
+      variables: { gameId, data: { open: false, finish: true, currentQuestion: null, state: currentIndexQuestion + 1 } },
+    });
+  };
+
   return (
     <>
       <h2>{currentGame.title}</h2>
       <p>
-        Question n°{currentIndexQuestion + 1} / {currentGame.questions.length}
+        Question n°{currentIndexQuestion} / {currentGame.questions.length}
       </p>
       <h3>{currentQuestion.title}</h3>
       <p>Choix possibles :</p>
@@ -59,9 +82,18 @@ const PlayGame = () => {
       {currentQuestion.launched ? (
         <>
           {endingQuestion < Date.now() || isQuestionFinished ? (
-            <p>Question terminée!</p>
+            <>
+              <p>Question terminée!</p>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={currentIndexQuestion === currentGame.questions.length ? terminateGame : detachQuestion}
+              >
+                {currentIndexQuestion === currentGame.questions.length ? 'Terminer la partie' : 'Détacher la question'}
+              </Button>
+            </>
           ) : (
-            <Counter endAt={endingQuestion} onComplete={() => setIsQuestionFinished(true)} />
+            <Counter duration={currentQuestion.duration} endAt={endingQuestion} onComplete={() => setIsQuestionFinished(true)} />
           )}
         </>
       ) : (

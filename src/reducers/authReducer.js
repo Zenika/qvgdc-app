@@ -5,8 +5,10 @@ export const initialAuthState = {
 };
 
 export const initialPlayerState = {
-  player: localStorage.getItem('player') ? JSON.parse(localStorage.getItem('player'))['name'] : null,
+  name: localStorage.getItem('player') ? JSON.parse(localStorage.getItem('player'))['name'] : null,
   id: localStorage.getItem('player') ? JSON.parse(localStorage.getItem('player'))['id'] : null,
+  score: localStorage.getItem('player') ? JSON.parse(localStorage.getItem('player'))['score'] : null,
+  answers: localStorage.getItem('player') ? JSON.parse(localStorage.getItem('player'))['answers'] : null,
 };
 
 export const authReducer = (state, action) => {
@@ -26,8 +28,15 @@ export const playerReducer = (state, action) => {
   switch (action.type) {
     case 'JOIN':
       return {
-        player: action.payload.name,
+        name: action.payload.name,
         id: action.payload.id,
+        score: null,
+        answers: [],
+      };
+    case 'UPDATE':
+      return {
+        ...state,
+        ...action.payload,
       };
     default:
       return state;

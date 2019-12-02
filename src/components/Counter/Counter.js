@@ -11,16 +11,18 @@ const Counter = (props) => {
 
   if (interval) clearTimeout(interval);
 
-  interval = setTimeout(() => {
-    const newTiming = new Date(props.endAt).getTime() - Date.now();
+  if (remaining > 0) {
+    interval = setTimeout(() => {
+      const newTiming = new Date(props.endAt).getTime() - Date.now();
 
-    if (newTiming > 0) {
-      setRemaining(newTiming);
-    } else {
-      setRemaining(0);
-      props.onComplete();
-    }
-  }, 1000);
+      if (newTiming > 0) {
+        setRemaining(newTiming);
+      } else {
+        setRemaining(0);
+        props.onComplete();
+      }
+    }, 1000);
+  }
 
   const progress = ((remaining / 1000) * 100) / props.duration;
   const dashOffset = (progress * 157.079) / 100;

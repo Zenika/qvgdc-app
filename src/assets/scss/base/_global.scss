@@ -42,8 +42,16 @@ body {
   text-align: justify;
   width: 90%;
 
+  &--no-padding {
+    width: 100%;
+  }
+
   @include breakpoint($smallDesktop) {
     max-width: 90%;
+
+    &--no-padding {
+      max-width: 100%;
+    }
   }
 
   &--full {

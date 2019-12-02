@@ -6,6 +6,7 @@ export const GAMEDETAIL_QUERY = gql`
       id
       title
       state
+      finish
       currentQuestion {
         id
         title
@@ -42,11 +43,13 @@ export const GAMEDETAIL_SUBSCRIPTION = gql`
       id
       title
       state
+      finish
       currentQuestion {
         id
         title
         launched
         duration
+        order
       }
       players {
         id
@@ -57,6 +60,7 @@ export const GAMEDETAIL_SUBSCRIPTION = gql`
         title
         launched
         duration
+        order
         choices {
           id
           title

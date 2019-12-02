@@ -1,34 +1,35 @@
 import gql from 'graphql-tag';
 
 export const GAMEDETAIL_QUERY = gql`
-  query game($gameId: ID!) {
+  query getGame($gameId: ID!) {
     game(gameId: $gameId) {
       id
       title
       state
+      finish
       currentQuestion {
         id
         title
         launched
         duration
-      }
-      players {
-        id
-        name
-      }
-      questions {
-        id
-        title
-        launched
-        duration
-        choices {
-          id
-          title
-        }
+        order
         goodChoice {
           id
           title
         }
+        choices {
+          id
+          title
+          answers {
+            id
+          }
+        }
+      }
+      players {
+        id
+        name
+        score
+        responseTime
       }
     }
   }
@@ -40,30 +41,61 @@ export const GAMEDETAIL_SUBSCRIPTION = gql`
       id
       title
       state
+      finish
       currentQuestion {
         id
         title
         launched
         duration
         order
+        goodChoice {
+          id
+          title
+        }
+        choices {
+          id
+          title
+          answers {
+            id
+          }
+        }
       }
       players {
         id
         name
+        score
+        responseTime
       }
-      questions {
+    }
+  }
+`;
+
+export const PLAYER_QUERY = gql`
+  query getPlayer($playerId: ID!) {
+    player(playerId: $playerId) {
+      id
+      name
+      score
+      answers {
         id
-        title
-        launched
-        duration
-        order
-        choices {
+        choice {
           id
-          title
         }
-        goodChoice {
+      }
+    }
+  }
+`;
+
+export const PLAYER_SUBSCRIPTION = gql`
+  subscription updatedPlayer($playerId: ID!) {
+    updatedPlayer(playerId: $playerId) {
+      id
+      name
+      score
+      answers {
+        id
+        choice {
           id
-          title
         }
       }
     }

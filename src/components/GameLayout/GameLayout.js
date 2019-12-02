@@ -22,14 +22,14 @@ function GameLayout(props) {
         <NetworkStatus online={true} />
       </Header>
       <div className={styles.main}>
-        <div className="u-wrapper">{props.children}</div>
+        <div className="u-wrapper u-wrapper--no-padding">{props.children}</div>
       </div>
       <Footer>
         <p className={styles.player}>
           <User />
-          {props.player.player}
+          {props.player.name}
         </p>
-        <Score />
+        <Score score={props.player.score} />
       </Footer>
     </div>
   );
