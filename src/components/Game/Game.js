@@ -3,11 +3,11 @@ import GameLayout from 'components/GameLayout/GameLayout';
 import LeaderBoard from 'components/LeaderBoard/LeaderBoard';
 import Loader from 'components/Loader/Loader';
 import Question from 'components/Question/Question';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { playerContext } from 'store';
 
-import { GAMEDETAIL_QUERY, GAMEDETAIL_SUBSCRIPTION, PLAYER_QUERY, PLAYER_SUBSCRIPTION } from './Game.actions';
+import { GAMEDETAIL_QUERY, GAMEDETAIL_SUBSCRIPTION, PLAYER_QUERY } from './Game.actions';
 import styles from './Game.module.scss';
 
 export const Game = () => {
@@ -20,7 +20,7 @@ export const Game = () => {
     },
   });
 
-  const { loadingPlayer, errorPlayer, dataPlayer, refetchPlayer } = useQuery(PLAYER_QUERY, {
+  const { data: dataPlayer, refetch: refetchPlayer } = useQuery(PLAYER_QUERY, {
     variables: {
       playerId: player.id,
     },
@@ -34,17 +34,22 @@ export const Game = () => {
     },
   });
 
-  const { loading: subscriptionLoading, data: data$ } = useSubscription(GAMEDETAIL_SUBSCRIPTION, {
+  const { data: data$ } = useSubscription(GAMEDETAIL_SUBSCRIPTION, {
     variables: {
       gameId,
     },
   });
 
-  const { data: dataPlayer$ } = useSubscription(PLAYER_SUBSCRIPTION, {
-    variables: {
-      playerId: player.id,
-    },
-  });
+  useEffect(() => {
+    if (dataPlayer && dataPlayer.player) {
+      localStorage.setItem('player', JSON.stringify(dataPlayer.player));
+
+      dispatch({
+        type: 'UPDATE',
+        payload: { ...dataPlayer.player },
+      });
+    }
+  }, [dataPlayer]);
 
   if (loading) return <div>Chargement de la partie...</div>;
   if (error) return <div>Problème lors du chargement de la partie</div>;
@@ -53,8 +58,9 @@ export const Game = () => {
 
   if (currentGame.finish)
     return (
-      <GameLayout player={dataPlayer$ && dataPlayer$.updatedPlayer ? dataPlayer$.updatedPlayer : player} game={currentGame}>
-        <div className="text-center">Partie terminée</div>
+      <GameLayout player={dataPlayer ? dataPlayer.player : player} game={currentGame}>
+        <h3 className="text-center">Partie terminée</h3>
+        <br />
         <LeaderBoard players={currentGame.players} />
       </GameLayout>
     );
@@ -69,7 +75,7 @@ export const Game = () => {
           <Loader />
         </>
       ) : (
-        <Question question={currentQuestion} />
+        <Question question={currentQuestion} onCompleteCounter={refetchPlayer} />
       )}
     </GameLayout>
   );

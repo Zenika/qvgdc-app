@@ -21,13 +21,13 @@ const PlayGame = () => {
     },
   });
 
-  const { loading: subscriptionLoading, data: data$ } = useSubscription(GAMEDETAIL_SUBSCRIPTION, {
+  const { data: data$ } = useSubscription(GAMEDETAIL_SUBSCRIPTION, {
     variables: {
       gameId,
     },
   });
 
-  const [updateGameMutation, { loading: updatingGame }] = useMutation(UPDATE_GAME);
+  const [updateGameMutation] = useMutation(UPDATE_GAME);
 
   if (loading) return <div>Chargement de la partie...</div>;
   if (error) return <div>Problème lors du chargement de la partie</div>;

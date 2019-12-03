@@ -10,6 +10,7 @@ export const USER_QUERY = gql`
           id
         }
         open
+        finish
       }
     }
   }

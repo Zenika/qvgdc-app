@@ -38,6 +38,8 @@ const Question = (props) => {
         dispatchOnClick();
       }
 
+      props.onCompleteCounter();
+
       setIsQuestionFinished(true);
       setAnswer(null);
     }

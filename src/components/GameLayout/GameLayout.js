@@ -3,17 +3,17 @@ import Header from 'components/Header/Header';
 import Logo from 'components/Logo/Logo';
 import NetworkStatus from 'components/NetworkStatus/NetworkStatus';
 import Score from 'components/Score/Score';
-import React, { useContext } from 'react';
+import React from 'react';
 import { User } from 'react-feather';
 
 import styles from './GameLayout.module.scss';
 
-function GameLayout(props) {
+function GameLayout() {
   return (
     <div className={styles.question}>
       <Header>
         <div className={styles.logo}>
-          <Logo />
+          <Lpropsogo />
         </div>
         <div className={styles.title}>
           <h1>{props.game.title}</h1>

@@ -19,7 +19,7 @@ const JoinGame = ({ game }) => {
   const [_, dispatch] = useContext(playerContext);
   const history = useHistory();
   const [playerName, setPlayerName] = useState('');
-  const [newPlayerMutation, { data, loading, error }] = useMutation(NEW_PLAYER, {
+  const [newPlayerMutation, { loading, error }] = useMutation(NEW_PLAYER, {
     onCompleted(completeData) {
       localStorage.setItem('player', JSON.stringify({ id: completeData.newPlayer.id, name: completeData.newPlayer.name }));
 
