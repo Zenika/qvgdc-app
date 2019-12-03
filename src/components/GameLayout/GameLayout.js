@@ -8,12 +8,12 @@ import { User } from 'react-feather';
 
 import styles from './GameLayout.module.scss';
 
-function GameLayout() {
+function GameLayout(props) {
   return (
     <div className={styles.question}>
       <Header>
         <div className={styles.logo}>
-          <Lpropsogo />
+          <Logo />
         </div>
         <div className={styles.title}>
           <h1>{props.game.title}</h1>
