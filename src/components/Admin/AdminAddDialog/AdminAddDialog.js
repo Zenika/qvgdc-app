@@ -13,6 +13,7 @@ const AdminAddDialog = (props) => {
       <DialogContent>
         <DialogContentText>{props.description}</DialogContentText>
         {props.fields}
+        {props.children}
       </DialogContent>
       <DialogActions>
         <Button onClick={() => props.close(false)} color="primary">
