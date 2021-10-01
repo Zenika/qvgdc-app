@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { Menu, MenuItem, Snackbar, TextField } from '@material-ui/core';
+import { Menu, MenuItem, Snackbar, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import AdminAddDialog from '../AdminAddDialog/AdminAddDialog';
 import { ADD_USER } from './AdminUser.actions';
@@ -102,7 +102,6 @@ const AdminUser = (props) => {
         loading={loading}
       />
       <Menu
-        getContentAnchorEl={null}
         anchorEl={anchorEl}
         anchorOrigin={{
           vertical: 'bottom',

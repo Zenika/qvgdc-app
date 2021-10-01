@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from '@apollo/client';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import Radio from '@material-ui/core/Radio';
-import TextField from '@material-ui/core/TextField';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Radio from '@mui/material/Radio';
+import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
 import { PlayCircle, Trash2 } from 'react-feather';
 import CrudList from '../CrudList/CrudList';

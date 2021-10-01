@@ -1,4 +1,4 @@
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import GameList from 'components/GameList/GameList';
 import JoinGame from 'components/JoinGame/JoinGame';
 import Logo from 'components/Logo/Logo';
