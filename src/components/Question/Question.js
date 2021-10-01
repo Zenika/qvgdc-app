@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import Choices from 'components/Choices/Choices';
 import Counter from 'components/Counter/Counter';
 import React, { useContext, useState } from 'react';
