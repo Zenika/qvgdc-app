@@ -2,6 +2,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
+import AdminWizard from 'components/Admin/AdminWizard/AdminWizard';
 import NetworkStatus from 'components/NetworkStatus/NetworkStatus';
 import React, { useState } from 'react';
 import { Edit, PlayCircle, Trash2 } from 'react-feather';
@@ -132,8 +133,7 @@ const AdminGames = () => {
 
   return (
     <>
-      <h2>Bienvenue</h2>
-      <p>Dans l'administration de Qui veut gagner des canards. Vous pouvez ajouter des parties puis gérer leurs contenus.</p>
+      <AdminWizard />
       <br />
       <CrudList table={dataTable} dialog={dataDialog} />
     </>
