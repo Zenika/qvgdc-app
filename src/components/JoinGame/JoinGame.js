@@ -15,7 +15,7 @@ export const NEW_PLAYER = gql`
 `;
 
 const JoinGame = ({ game }) => {
-  const [_, dispatch] = useContext(playerContext);
+  const dispatch = useContext(playerContext)[1];
   const history = useHistory();
   const [playerName, setPlayerName] = useState('');
   const [newPlayerMutation, { loading, error }] = useMutation(NEW_PLAYER, {
