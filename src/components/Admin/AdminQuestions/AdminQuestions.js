@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import TextField from '@material-ui/core/TextField';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
 import { Edit, Trash2 } from 'react-feather';
 import { useHistory } from 'react-router-dom';

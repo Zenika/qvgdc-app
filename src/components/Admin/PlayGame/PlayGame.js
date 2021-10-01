@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useSubscription } from '@apollo/client';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import Counter from 'components/Counter/Counter';
 import React, { useState } from 'react';
 import { Check, X } from 'react-feather';

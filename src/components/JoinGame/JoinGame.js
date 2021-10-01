@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client';
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 import GameDetail from 'components/GameDetail/GameDetail';
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';

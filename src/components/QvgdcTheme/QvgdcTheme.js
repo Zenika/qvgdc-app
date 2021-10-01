@@ -1,4 +1,4 @@
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 
 const baseFonts = [
@@ -14,32 +14,43 @@ const baseFonts = [
   '"Segoe UI Symbol"',
 ];
 
-const theme = createMuiTheme({
-  overrides: {
+const theme = createTheme({
+  shape: {
+    borderRadius: 8,
+  },
+  components: {
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          fontSize: 16,
+        },
+      },
+    },
     MuiButton: {
-      root: {
-        textTransform: 'none',
-        fontSize: 14,
-        fontWeight: 600,
-        borderRadius: '6em',
-        padding: '9px 24px',
-        fontFamily: ['Montserrat', 'Source Sans Pro', ...baseFonts].join(','),
-      },
-      containedPrimary: {
-        background: 'linear-gradient(135deg, #DB2244 0%, #C4285F 100%)',
-        boxShadow: '0 3px 6px rgba(196, 40, 95, .3)',
-        '&:hover': {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          fontWeight: 600,
+          borderRadius: '6em',
+          padding: '9px 24px',
+          fontFamily: ['Montserrat', 'Source Sans Pro', ...baseFonts].join(','),
+        },
+        containedPrimary: {
+          background: 'linear-gradient(135deg, #DB2244 0%, #C4285F 100%)',
           boxShadow: '0 3px 6px rgba(196, 40, 95, .3)',
+          '&:hover': {
+            boxShadow: '0 3px 6px rgba(196, 40, 95, .3)',
+          },
+          '&:disabled': {
+            background: '#ddd',
+          },
         },
-        '&:disabled': {
-          background: '#ddd',
+        containedSizeSmall: {
+          padding: '4px 16px',
         },
-      },
-      containedSizeSmall: {
-        padding: '4px 16px',
-      },
-      text: {
-        padding: '4px 16px',
+        text: {
+          padding: '4px 16px',
+        },
       },
     },
   },
@@ -59,7 +70,6 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: ['Source Sans Pro', ...baseFonts].join(','),
-    fontSize: 16,
     h1: {
       fontFamily: ['Montserrat', 'Source Sans Pro', ...baseFonts].join(','),
       fontWeight: 600,
@@ -88,7 +98,11 @@ const theme = createMuiTheme({
 });
 
 function QvgdcTheme(props) {
-  return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
+  return (
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
+    </StyledEngineProvider>
+  );
 }
 
 export default QvgdcTheme;
