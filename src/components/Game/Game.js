@@ -48,7 +48,7 @@ export const Game = () => {
         payload: { ...dataPlayer.player },
       });
     }
-  }, [dataPlayer]);
+  }, [dataPlayer, dispatch]);
 
   if (loading) return <div>Chargement de la partie...</div>;
   if (error) return <div>Problème lors du chargement de la partie</div>;
