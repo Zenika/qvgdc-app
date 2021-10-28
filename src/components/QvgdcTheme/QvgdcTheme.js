@@ -33,7 +33,7 @@ const theme = createTheme({
           fontWeight: 600,
           borderRadius: '6em',
           padding: '9px 24px',
-          fontFamily: ['Montserrat', 'Source Sans Pro', ...baseFonts].join(','),
+          fontFamily: ['Nunito', ...baseFonts].join(','),
         },
         containedPrimary: {
           background: 'linear-gradient(135deg, #DB2244 0%, #C4285F 100%)',
@@ -69,29 +69,29 @@ const theme = createTheme({
     danger: 'orange',
   },
   typography: {
-    fontFamily: ['Source Sans Pro', ...baseFonts].join(','),
+    fontFamily: ['Nunito', ...baseFonts].join(','),
     h1: {
-      fontFamily: ['Montserrat', 'Source Sans Pro', ...baseFonts].join(','),
+      fontFamily: ['Nunito', ...baseFonts].join(','),
       fontWeight: 600,
     },
     h2: {
-      fontFamily: ['Montserrat', 'Source Sans Pro', ...baseFonts].join(','),
+      fontFamily: ['Nunito', ...baseFonts].join(','),
       fontWeight: 600,
     },
     h3: {
-      fontFamily: ['Montserrat', 'Source Sans Pro', ...baseFonts].join(','),
+      fontFamily: ['Nunito', ...baseFonts].join(','),
       fontWeight: 600,
     },
     h4: {
-      fontFamily: ['Montserrat', 'Source Sans Pro', ...baseFonts].join(','),
+      fontFamily: ['Nunito', ...baseFonts].join(','),
       fontWeight: 600,
     },
     h5: {
-      fontFamily: ['Montserrat', 'Source Sans Pro', ...baseFonts].join(','),
+      fontFamily: ['Nunito', ...baseFonts].join(','),
       fontWeight: 600,
     },
     h6: {
-      fontFamily: ['Montserrat', 'Source Sans Pro', ...baseFonts].join(','),
+      fontFamily: ['Nunito', ...baseFonts].join(','),
       fontWeight: 600,
     },
   },
