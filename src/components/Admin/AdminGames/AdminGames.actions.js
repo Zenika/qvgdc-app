@@ -25,6 +25,15 @@ export const ADD_GAME = gql`
   }
 `;
 
+export const ADD_JSON_GAME = gql`
+  mutation newJsonGame($json: String!) {
+    newJsonGame(json: $json) {
+      id
+      title
+    }
+  }
+`;
+
 export const DELETE_GAME = gql`
   mutation deleteGame($gameId: ID!) {
     deleteGame(gameId: $gameId) {

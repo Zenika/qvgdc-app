@@ -2,19 +2,21 @@ import { useMutation, useQuery } from '@apollo/client';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 import AdminWizard from 'components/Admin/AdminWizard/AdminWizard';
 import NetworkStatus from 'components/NetworkStatus/NetworkStatus';
 import React, { useState } from 'react';
 import { Edit, PlayCircle, Trash2 } from 'react-feather';
 import { useHistory } from 'react-router-dom';
 import CrudList from '../CrudList/CrudList';
-import { ADD_GAME, DELETE_GAME, UPDATE_GAME, USER_QUERY } from './AdminGames.actions';
+import { ADD_GAME, ADD_JSON_GAME, DELETE_GAME, UPDATE_GAME, USER_QUERY } from './AdminGames.actions';
 
 const AdminGames = () => {
   const [input, setInput] = useState('');
   const history = useHistory();
   const { loading, error, data, refetch } = useQuery(USER_QUERY);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [show, setShow] = useState('')
   const [deleteGameMutation] = useMutation(DELETE_GAME, {
     onCompleted() {
       refetch();
@@ -33,10 +35,24 @@ const AdminGames = () => {
     },
   });
 
+  const [addJsonGameMutation] = useMutation(ADD_JSON_GAME, {
+    onCompleted() {
+      refetch();
+    },
+  });
+
   const addGame = () => {
     setDialogOpen(false);
     addGameMutation({
       variables: { title: input },
+    });
+    setInput('');
+  };
+
+  const addJsonGame = () => {
+    setDialogOpen(false);
+    addJsonGameMutation({
+      variables: { json: input },
     });
     setInput('');
   };
@@ -105,9 +121,14 @@ const AdminGames = () => {
     data: gamesToRender,
     title: 'Liste des parties',
     actions: (
-      <Button size="small" onClick={() => setDialogOpen(true)} variant="contained" color="primary">
-        Ajouter une partie
-      </Button>
+      <div>
+        <Button size="small" onClick={() => {setShow("add"); setDialogOpen(true)}} variant="contained" color="primary">
+          Ajouter une partie
+        </Button>
+        <Button size="small" onClick={() => {setShow("json"); setDialogOpen(true)}} variant="contained" color="primary">
+          Ajouter un JSON
+        </Button>
+      </div>
     ),
   };
 
@@ -131,11 +152,31 @@ const AdminGames = () => {
     ],
   };
 
+  const dataJsonDialog = {
+    title: 'Ajouter une partie',
+    description: 'Pour ajouter une partie, coller son json',
+    open: dialogOpen,
+    closeDialog: setDialogOpen,
+    completeDialog: addJsonGame,
+    fields: [
+      <TextareaAutosize
+        key="jsonGame"
+        onChange={(e) => setInput(e.target.value)}
+        autoFocus
+        margin="dense"
+        id="jsonGame"
+        placeholder="Json de la partie"
+        fullWidth
+        variant="outlined"
+      />,
+    ],
+  };
+
   return (
     <>
       <AdminWizard />
       <br />
-      <CrudList table={dataTable} dialog={dataDialog} />
+      <CrudList table={dataTable} dialog={show === "json" ? dataJsonDialog: dataDialog} />
     </>
   );
 };
