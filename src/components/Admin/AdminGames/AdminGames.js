@@ -2,7 +2,6 @@ import { useMutation, useQuery } from '@apollo/client';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
 import AdminWizard from 'components/Admin/AdminWizard/AdminWizard';
 import NetworkStatus from 'components/NetworkStatus/NetworkStatus';
 import React, { useState } from 'react';
@@ -10,6 +9,7 @@ import { Edit, PlayCircle, Trash2 } from 'react-feather';
 import { useHistory } from 'react-router-dom';
 import CrudList from '../CrudList/CrudList';
 import { ADD_GAME, ADD_JSON_GAME, DELETE_GAME, UPDATE_GAME, USER_QUERY } from './AdminGames.actions';
+import styles from './AdminGames.module.scss';
 
 const AdminGames = () => {
   const [input, setInput] = useState('');
@@ -69,6 +69,7 @@ const AdminGames = () => {
     });
   };
 
+
   if (loading) return <div>Chargement des parties...</div>;
   if (error) return <div>Erreur lors du chargement des parties, veuillez réessayer.</div>;
 
@@ -121,12 +122,12 @@ const AdminGames = () => {
     data: gamesToRender,
     title: 'Liste des parties',
     actions: (
-      <div>
-        <Button size="small" onClick={() => {setShow("add"); setDialogOpen(true)}} variant="contained" color="primary">
+      <div className={styles.buttons}>
+        <Button size="small" onClick={() => { setShow("add"); setDialogOpen(true) }} variant="contained" color="primary">
           Ajouter une partie
         </Button>
-        <Button size="small" onClick={() => {setShow("json"); setDialogOpen(true)}} variant="contained" color="primary">
-          Ajouter un JSON
+        <Button size="small" onClick={() => { setShow("json"); setDialogOpen(true) }} variant="contained" color="primary">
+          Importer un JSON
         </Button>
       </div>
     ),
@@ -153,21 +154,24 @@ const AdminGames = () => {
   };
 
   const dataJsonDialog = {
-    title: 'Ajouter une partie',
-    description: 'Pour ajouter une partie, coller son json',
+    title: 'Importer un JSON',
+    description: ['Créer une partie à partir d\'un fichier JSON.', <br />, 'Pour le format requis, voir sur ', <a href="https://github.com/Zenika/qvgdc-app/blob/main/example-party.json" rel="noreferrer noopener" target="_blank">GitHub</a>, '.'],
     open: dialogOpen,
     closeDialog: setDialogOpen,
     completeDialog: addJsonGame,
     fields: [
-      <TextareaAutosize
+      <TextField
         key="jsonGame"
+        multiline
         onChange={(e) => setInput(e.target.value)}
         autoFocus
+        fullWidth
+        minRows="8"
         margin="dense"
         id="jsonGame"
-        placeholder="Json de la partie"
-        fullWidth
+        placeholder="{ }"
         variant="outlined"
+        className={styles.jsontextarea}
       />,
     ],
   };
@@ -176,7 +180,7 @@ const AdminGames = () => {
     <>
       <AdminWizard />
       <br />
-      <CrudList table={dataTable} dialog={show === "json" ? dataJsonDialog: dataDialog} />
+      <CrudList table={dataTable} dialog={show === "json" ? dataJsonDialog : dataDialog} />
     </>
   );
 };

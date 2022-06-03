@@ -11,7 +11,7 @@ const AdminWizard = () => {
         Pour cela il faut :
       </p>
       <ol>
-        <li>Ajouter une partie;</li>
+        <li>Ajouter une partie ou importer une partie via un <strong>JSON</strong>;</li>
         <li>
           L'éditer en cliquant sur le{' '}
           <strong>
