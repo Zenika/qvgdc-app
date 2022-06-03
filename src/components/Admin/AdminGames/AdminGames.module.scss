@@ -1,10 +1,10 @@
-.title {
-  width: 100%;
+.buttons {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1em;
 }
 
-.paper p {
-  padding: 0 16px 16px;
+.jsontextarea {
+  min-width: 540px;
+  font-family: monospace;
 }
