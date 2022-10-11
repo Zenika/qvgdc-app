@@ -109,7 +109,7 @@ const Choices = (props) => {
         autoFocus
         margin="dense"
         id="name"
-        label="Question"
+        label="Réponse"
         fullWidth
         variant="outlined"
       />,
