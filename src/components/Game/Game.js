@@ -4,7 +4,7 @@ import LeaderBoard from 'components/LeaderBoard/LeaderBoard';
 import Loader from 'components/Loader/Loader';
 import Question from 'components/Question/Question';
 import React, { useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { playerContext } from 'store';
 import { GAMEDETAIL_QUERY, GAMEDETAIL_SUBSCRIPTION, PLAYER_QUERY } from './Game.actions';
 import styles from './Game.module.scss';
@@ -59,6 +59,7 @@ export const Game = () => {
     return (
       <GameLayout player={dataPlayer ? dataPlayer.player : player} game={currentGame}>
         <h3 className="text-center">Partie terminée</h3>
+        <p className="text-center"><Link to={'/'}>Retour à la page d'accueil</Link></p>
         <br />
         <LeaderBoard players={currentGame.players} />
       </GameLayout>
