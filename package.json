@@ -35,6 +35,10 @@
       "react-app/jest"
     ]
   },
+  "engines": {
+    "node": "^12",
+    "npm": "^6"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -46,5 +50,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "volta": {
+    "node": "12.22.12",
+    "npm": "6.14.17"
   }
 }
